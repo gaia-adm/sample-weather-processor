@@ -1,3 +1,5 @@
+CircleCI build status: [![Circle CI](https://circleci.com/gh/gaia-adm/sample-weather-processor.svg?style=svg)](https://circleci.com/gh/gaia-adm/sample-weather-processor)
+
 # sample weather data processor
 
 This is a sample weather data processor for GAIA analytics. It is based on "gaiaadm/result-processing" Docker image and adds a sample weather data processor implemented in Node.js. It processes data format from <a href="http://api.openweathermap.org/data/2.5/history/city">http://api.openweathermap.org/data/2.5/history/city</a>
