@@ -6,6 +6,7 @@ dependencies:
     - docker build -t gaiaadm/sample-weather-processor:$BUILD_TAG .
 test:
   override:
+    - /bin/true
 deployment:
   hub:
     branch: master
