@@ -21,7 +21,9 @@ var assembler = new Assembler();
 console.log('[');
 
 source.output.on("data", function(chunk) {
-    assembler[chunk.name] && assembler[chunk.name](chunk.value);
+    if (assembler[chunk.name]) {
+      assembler[chunk.name](chunk.value);
+    }
 });
 
 source.output.on("end", function() {
