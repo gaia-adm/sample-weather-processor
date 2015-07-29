@@ -36,7 +36,8 @@ process.stdin.setEncoding('utf8');
 process.stdin.pipe(source.input);
 
 /**
- * Processes weather object from <a href="http://api.openweathermap.org/data/2.5/history/city">http://api.openweathermap.org/data/2.5/history/city</a>
+ * Processes weather object from <a
+ * href="http://api.openweathermap.org/data/2.5/history/city">http://api.openweathermap.org/data/2.5/history/city</a>
  */
 function processWeather(weather) {
     // TODO this should ideally be done in stream way - receive individual items instead of the weather object
@@ -54,18 +55,16 @@ function processWeather(weather) {
 
 function processWeatherItem(item) {
     console.log(JSON.stringify({
-        "metric": "openweathermap",
-        "category": "weather",
-        "name": params.city,
-        "source": "http://api.openweathermap.org/data/2.5/history/city",
-        "timestamp": item.dt,
-        "measurements": [
-            {"name": "temp", "value": item.main.temp},
-            {"name": "pressure", "value": item.main.pressure},
-            {"name": "humidity", "value": item.main.humidity},
-            {"name": "windspeed", "value": item.wind.speed}
-        ],
-        "tags": [params.country]
+        "event": "general", "time": new Date(item.dt).toISOString(), "source": {
+            "origin": "http://api.openweathermap.org/data/2.5/history/city"
+        }, "tags": {
+            "type": "weather", "city": params.city, "country": params.country
+        }, "data": {
+            "temp": item.main.temp,
+            "pressure": item.main.pressure,
+            "humidity": item.main.humidity,
+            "windspeed": item.wind.speed
+        }
     }));
 }
 
