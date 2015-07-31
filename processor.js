@@ -8,8 +8,9 @@ exitOnSignal('SIGTERM');
 var params = getProcessParameters();
 
 if (Object.keys(params).length > 0) {
-    console.error('City: ' + params.city);
-    console.error('Country: ' + params.country);
+    // custom metadata keys are prefixed with c_
+    console.error('City: ' + params.c_city);
+    console.error('Country: ' + params.c_country);
 } else {
     console.log('[]');
     process.exit(0);
@@ -36,8 +37,7 @@ process.stdin.setEncoding('utf8');
 process.stdin.pipe(source.input);
 
 /**
- * Processes weather object from <a
- * href="http://api.openweathermap.org/data/2.5/history/city">http://api.openweathermap.org/data/2.5/history/city</a>
+ * Processes weather object from <a href="http://api.openweathermap.org/data/2.5/history/city">http://api.openweathermap.org/data/2.5/history/city</a>
  */
 function processWeather(weather) {
     // TODO this should ideally be done in stream way - receive individual items instead of the weather object
@@ -58,7 +58,7 @@ function processWeatherItem(item) {
         "event": "general", "time": new Date(item.dt).toISOString(), "source": {
             "origin": "http://api.openweathermap.org/data/2.5/history/city"
         }, "tags": {
-            "type": "weather", "city": params.city, "country": params.country
+            "type": "weather", "city": params.c_city, "country": params.c_country
         }, "data": {
             "temp": item.main.temp,
             "pressure": item.main.pressure,
