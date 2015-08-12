@@ -1,4 +1,4 @@
-FROM gaiaadm/result-processing
+FROM gaiaadm/result-processing:latest
 
 # Bundle app source
 COPY . /src/processors/sample-weather-processor
