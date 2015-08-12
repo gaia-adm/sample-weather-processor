@@ -8,9 +8,9 @@ exitOnSignal('SIGTERM');
 var params = getProcessParameters();
 
 if (Object.keys(params).length > 0) {
-    // custom metadata keys are prefixed with c_
-    console.error('City: ' + params.c_city);
-    console.error('Country: ' + params.c_country);
+    // custom metadata keys are prefixed with C_
+    console.error('City: ' + params.C_CITY);
+    console.error('Country: ' + params.C_COUNTRY);
 } else {
     console.log('[]');
     process.exit(0);
@@ -58,7 +58,7 @@ function processWeatherItem(item) {
         "event": "general", "time": new Date(item.dt).toISOString(), "source": {
             "origin": "http://api.openweathermap.org/data/2.5/history/city"
         }, "tags": {
-            "type": "weather", "city": params.c_city, "country": params.c_country
+            "type": "weather", "city": params.C_CITY, "country": params.C_COUNTRY
         }, "data": {
             "temp": item.main.temp,
             "pressure": item.main.pressure,
@@ -80,7 +80,7 @@ function getProcessParameters() {
     var keys = Object.keys(process.env);
     for (var i = 0; i < keys.length; i++) {
         var key = keys[i];
-        if (key.lastIndexOf('p_', 0) === 0) {
+        if (key.lastIndexOf('P_', 0) === 0) {
             var value = process.env[key];
             params[key.substr(2)] = value;
         }
