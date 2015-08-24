@@ -6,7 +6,8 @@ dependencies:
     - docker build -t gaiaadm/sample-weather-processor:$BUILD_TAG .
 test:
   override:
-    - /bin/true
+    # run jshint
+    - docker run --name jshint-runner gaiaadm/sample-weather-processor:$BUILD_TAG grunt --gruntfile /src/processors/sample-weather-processor/Gruntfile.js jshint
 deployment:
   hub:
     branch: master
