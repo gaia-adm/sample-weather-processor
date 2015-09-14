@@ -55,7 +55,7 @@ function processWeather(weather) {
 
 function processWeatherItem(item) {
     console.log(JSON.stringify({
-        "event": "general", "time": new Date(item.dt).toISOString(), "source": {
+        "event": "general", "time": new Date(item.dt * 1000).toISOString(), "source": {
             "origin": "http://api.openweathermap.org/data/2.5/history/city"
         }, "tags": {
             "type": "weather", "city": params.C_CITY, "country": params.C_COUNTRY
