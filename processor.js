@@ -100,3 +100,4 @@ function log(level, location, message) {
         console.error(level + ':' + location + ':' + message);
     }
 }
+
